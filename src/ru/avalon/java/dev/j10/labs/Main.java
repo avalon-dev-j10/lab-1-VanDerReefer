@@ -1,26 +1,35 @@
 package ru.avalon.java.dev.j10.labs;
 
-import ru.avalon.java.dev.j10.labs.models.Person;
+import ru.avalon.java.dev.j10.labs.models.*;
+
+import ru.avalon.java.dev.j10.labs.commons.*;
 
 public class Main {
-
-    Main() {
-
         /*
          * FIXME(Студент): Измените определение метода так, чтобы он стал точкой входа в приложение.
          */
-
-        Person ivanov = null;
-        Person smith = null;
+   public static void main(String args[]) {
+       String person1Data, person2Data;
+       
+        Person ivanov = new Person (
+                new Passport ("1000 0001", "Иванов", "Иван", "Иванович"), // поля ФИО в конструкторе имеют именно этот порядок
+                new Address ("Lenina", 5, 15)
+                );
+        
+        
+        Person smith = new Person (
+                new Passport ("2000 0002", "John", "Edvard", "Smith", null), // поля ФИО для иностранного имени в конструкторе имеют другой порядок
+                new Address ("BlumenStrasse", 5, 15)
+                );
 
         /*
          * TODO(Студент): Создайте экземпляры класса 'Person'
          *
-         * 1. Проинициализируейте переменную 'ivanov', так,
+         * +1. Проинициализируейте переменную 'ivanov', так,
          *    чтобы она адресовала объект типа 'Person'
          *    описывающий человека по имени 'Иванов Иван Иванович'.
          *
-         * 2. Проинициализируейте переменную 'smith', так,
+         * +2. Проинициализируейте переменную 'smith', так,
          *    чтобы она адресовала объект типа 'Person'
          *    описывающий человека по имени 'John Edvard Smith'.
          */
@@ -51,5 +60,11 @@ public class Main {
          * Значение каждой переменной должно быть выведено на
          * отдельной строке.
          */
+        
+        person1Data = ivanov.getFullName() + "\n" + ivanov.getAddress();
+        person2Data = smith.getFullName() + "\n" + smith.getAddress();
+        
+        System.out.print(person1Data + "\n" + person2Data );
+        
     }
 }

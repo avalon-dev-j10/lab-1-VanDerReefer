@@ -1,5 +1,7 @@
 package ru.avalon.java.dev.j10.labs.models;
 
+import ru.avalon.java.dev.j10.labs.commons.Address;
+
 /**
  * Представление о человеке.
  * <p>
@@ -13,19 +15,27 @@ package ru.avalon.java.dev.j10.labs.models;
  */
 public class Person {
 
+    private Passport perPassData;         // серия и номер паспорта
+    private Address perAddress;           // адрес места жительства
+
+    public Person(Passport perPassData, Address perAddress) {
+        this.perPassData = perPassData;
+        this.perAddress = perAddress;
+    }
+ 
     /*
      * TODO(Студент): Создайте класс Address.
      *
-     * 1. Добавте файл в пакет ru.avalon.java.dev.j10.labs.commons.
+     * +1. Добавте файл в пакет ru.avalon.java.dev.j10.labs.commons.
      *
-     * 2. Создайте класс, видимый из пакета. Подумайте о том
+     * +2. Создайте класс, видимый из пакета. Подумайте о том
      *    Какое имя должен иметь класс, если он объявленн в этом
      *    файле.
      *
-     * 3. Подумайте над тем, какие переменные должены быть
+     * +3. Подумайте над тем, какие переменные должены быть
      *    определены в классе.
      *
-     * 4. Подумайте над тем, какие методы должны быть объявлены
+     * +4. Подумайте над тем, какие методы должны быть объявлены
      *    в классе.
      */
 
@@ -47,11 +57,29 @@ public class Person {
      * @return имя человека в виде строки.
      */
     public String getFullName() {
+        String result;
         /*
          * TODO(Студент): Закончить определение метода 'getFullName()' класса 'Person'
          */
-        return null;
+        if (perPassData.getPerMiddleName() != null) {
+            result = perPassData.getPerName() + " " + 
+                     perPassData.getPerSurname() + " " +
+                     perPassData.getPerMiddleName();
+                    }
+        
+        else if (perPassData.getPerSecondName() != null){
+            result = perPassData.getPerName() + " " +
+                     perPassData.getPerSecondName().charAt(0) + ". " +
+                     perPassData.getPerSurname();
+                    }
+                        
+        else 
+            result = perPassData.getPerName() + " " + 
+                     perPassData.getPerSurname();
+        
+        return result;  
     }
+    
 
     /**
      * Возвращает адрес, по которому проживает человек.
@@ -62,9 +90,7 @@ public class Person {
      * @return адрес регистрации в виде строки.
      */
     public String getAddress() {
-        /*
-         * TODO(Студент): Закончить определение метода 'getAddress()' класса 'Person'
-         */
-        return null;
+               
+        return perAddress.toString();
     }
 }
